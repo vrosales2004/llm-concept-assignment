@@ -1,0 +1,26 @@
+<concept_spec>
+concept Scaler
+
+purpose
+    meant to store recipe and scale to the input factor
+
+principle recipe either manually inputted or uploaded along with scale factor
+	    on scale, ingredient counts are scaled by the given factor
+	    scale factor and entire recipe context taken into account through LLM when scaling
+
+state
+    a set of recipes
+        a name
+        a scale factor
+        a set of ingredients
+        a set of cookingMethods
+
+actions
+    enterRecipe (name: String, originalPeople: Number, targetPeople: number, ingredients: List[Ingredient], cookingMethods: List[String]): ()
+        requires targetPeople to be a whole number between [1, 50] and name to be unique
+        effect creates a scale factor based on the original number of people and the target amount and enters this recipe into the set of recipes. Optional cooking methods can be added to be associated with the recipe.
+        
+    scaleRecipeAI (name: String): (result: List[Ingredient])
+        requires name to be in set of recipes
+        effect inputs the entire recipe in an LLM to use as context when deciding how much to scale each ingredient
+</concept_spec>
