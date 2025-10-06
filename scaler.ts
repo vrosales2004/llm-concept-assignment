@@ -26,6 +26,10 @@ export class Scaler {
         this.recipes = new Map<string, Recipe>();
     }
 
+    removeRecipe(name: string) {
+        this.recipes.delete(name);
+    }
+
     addRecipe(name: string, originalPeople: number, targetPeople: number, ingredients: Ingredient[], cookingMethods: string[]) {
         let scaleFactor = targetPeople / originalPeople;
         let newRecipe = {
@@ -44,7 +48,7 @@ export class Scaler {
         }
         return recipe.ingredients.map(ing => ({
             item: ing.item,
-            quantity: parseFloat((ing.quantity * recipe!.scaleFactor).toFixed(2)),
+            quantity: parseFloat((ing.quantity * recipe.scaleFactor).toFixed(2)),
             unit: ing.unit,
             scalingContext: ing.scalingContext
         }));

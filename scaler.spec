@@ -19,6 +19,14 @@ actions
     enterRecipe (name: String, originalPeople: Number, targetPeople: number, ingredients: List[Ingredient], cookingMethods: List[String]): ()
         requires targetPeople to be a whole number between [1, 50] and name to be unique
         effect creates a scale factor based on the original number of people and the target amount and enters this recipe into the set of recipes. Optional cooking methods can be added to be associated with the recipe.
+
+    removeRecipe(name: String): ()
+        requires name to be in set of recipes
+        effect removes recipe from scaler
+
+    scaleManually (name: String): (result: List[Ingredient])
+        requires name to be in set of recipes
+        effect returns the list of ingredients after each being scaled linearly according to the scale factor
         
     scaleRecipeAI (name: String): (result: List[Ingredient])
         requires name to be in set of recipes

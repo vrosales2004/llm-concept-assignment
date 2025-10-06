@@ -52,4 +52,4 @@ Another problem was that the LLM would sometimes give unusual amounts for certai
 There are a few major issues that the LLM might produce. One problem could arise if the LLM doesn’t return all the ingredients that were input. This might happen when scaling down if the LLM decides to remove an ingredient altogether. Another issue is that an LLM does not take into account a cooking method. For example, some recipes require proteins to be cooked in a sauce, but this does not require scaling the sauce ingredients as much as the protein. Finally, the LLM might alter the ingredient quantities to unusual amounts. An example, a recipe might be scaled up to use 2.25 lemons because the LLM doesn’t know that this is an unusual number of lemons.
 
 # How to run
-Compile and run dayplanner
+Compile and run scaler-tests.ts

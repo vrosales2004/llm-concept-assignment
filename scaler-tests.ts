@@ -145,6 +145,7 @@ export async function scalingDownTest(): Promise<void> {
     assert(scaledIngredients.length > 0, 'No ingredients returned from scaling.');
     assert(scaledIngredients.some(ing => ing.item === 'Parmesan Cheese'), 'Scaled ingredients do not include Cheese.');
     assert(scaledIngredients.find(ing => ing.item === 'Parmesan Cheese')!.quantity > 0.75, 'Cheese scaled too much.');
+    // Validator for sauce not scaling down too much
     assert(scaledIngredients.some(ing => ing.item === 'Tomato Sauce'), 'Scaled ingredients do not include Tomato Sauce.');
     assert(scaledIngredients.find(ing => ing.item === 'Tomato Sauce')!.quantity > 1.5, 'Sauce scaled too much.');
 }
