@@ -1,10 +1,12 @@
 # Recipe Scaler
-A simple day planner. This implementation focuses on the core concept of organizing activities for a single day with both manual and AI-assisted scheduling.
+A recipe scaler. This concept stores recipes and intelligently scales these recipes to the desired level.
 
-## Concept: DayPlanner
+## Concept: Scaler
 
-**Purpose**: Help you organize activities for a single day  
-**Principle**: You can add activities one at a time, assign them to times, and then observe the completed schedule
+**Purpose**: Meant to store recipe and scale to the input factor
+**Principle**: recipe either manually inputted or uploaded along with scale factor
+	    on scale, ingredient counts are scaled by the given factor
+	    scale factor and entire recipe context taken into account through LLM when scaling
 
 ### Core State
 - **Activities**: Set of activities with title, duration, and optional startTime
