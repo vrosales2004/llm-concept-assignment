@@ -106,7 +106,7 @@ export async function scalingUpTest(): Promise<void> {
         { item: 'Pasta', quantity: 200, unit: 'grams', scalingContext: 'main carbohydrate' },
         { item: 'Tomato Sauce', quantity: 1, unit: 'cup', scalingContext: 'sauce' },
         { item: 'Parmesan Cheese', quantity: 0.5, unit: 'cup', scalingContext: 'topping. doesnt need to scale as much' },
-        { item: 'Basil', quantity: 5, unit: 'leaves', scalingContext: 'garnish. doesnt need to scale as much' }
+        { item: 'Basil', quantity: 5, unit: 'leaves', scalingContext: 'garnish. doesnt need to scale as much. leaves are whole and therefore should be rounded to nearest integer' }
     ];
 
     scaler.addRecipe('Pasta with Tomato Sauce', 2, 10, ingredients, ['the sauce is important so make sure to have enough']);
@@ -115,6 +115,10 @@ export async function scalingUpTest(): Promise<void> {
     assert(scaledIngredients.length > 0, 'No ingredients returned from scaling.');
     assert(scaledIngredients.some(ing => ing.item === 'Parmesan Cheese'), 'Scaled ingredients do not include Cheese.');
     assert(scaledIngredients.find(ing => ing.item === 'Parmesan Cheese')!.quantity < 3, 'Cheese scaled too much.');
+
+    // Validator for whole numbers of Basil
+    assert(scaledIngredients.some(ing => ing.item === 'Basil'), 'Scaled ingredients do not include Basil.');
+    assert(Number.isInteger(scaledIngredients.find(ing => ing.item === 'Basil')!.quantity), 'Basil quantity is not a whole number.');
 }
 
 /**
@@ -132,7 +136,7 @@ export async function scalingDownTest(): Promise<void> {
         { item: 'Pasta', quantity: 800, unit: 'grams', scalingContext: 'main carbohydrate' },
         { item: 'Tomato Sauce', quantity: 4, unit: 'cups', scalingContext: 'sauce. do not scale down linearly to prevent dry noodles' },
         { item: 'Parmesan Cheese', quantity: 2, unit: 'cups', scalingContext: 'topping. doesnt need to scale as much' },
-        { item: 'Basil', quantity: 20, unit: 'leaves', scalingContext: 'garnish. doesnt need to scale as much' }
+        { item: 'Basil', quantity: 20, unit: 'leaves', scalingContext: 'garnish. doesnt need to scale as much. leaves are whole and therefore should be rounded to nearest integer' }
     ];
 
     scaler.addRecipe('Pasta with Tomato Sauce', 8, 3, ingredients, ['the sauce is important so make sure to have enough']);
